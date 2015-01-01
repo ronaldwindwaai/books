@@ -23,8 +23,8 @@ if("undefined"===typeof APIGEE_ORGNAME){
             var apigee = new Apigee.Client({
                 orgName:APIGEE_ORGNAME,
                 appName:APIGEE_APPNAME,
-        logging: true, //optional - turn on logging, off by default
-        buildCurl: true //optional - log network calls in the console, off by default
+                logging: true, //optional - turn on logging, off by default
+                buildCurl: true //optional - log network calls in the console, off by default
 
                 
             });
@@ -44,20 +44,23 @@ if("undefined"===typeof APIGEE_ORGNAME){
             });
 
             function loadBooks () {
-                
+                var bookslist =[];
                 my_books.fetch( // Actual network call
 
                     // Success Callback
                     function () {
                         $('#books-list').empty();
-                        
+                        var current_book ='';
                         while ( my_books.hasNextEntity() ) {
-                            var current_book = my_books.getNextEntity();
-
-                            // Output the book on the page
-                            $('#books-list').append('<li><h3>'+current_book.get('title')+'</h3><p>'+current_book.get('author')+'</p></li>');
+                           current_book = my_books.getNextEntity();
+                           bookslist.push('<li><h3>'+current_book.get('title')+'</h3><p>'+current_book.get('author')+'</p></li>');
                         }
-                        
+                        bookslist.reverse();
+                        size = bookslist.length;
+                        for(i=0; i < size; i++)
+                        {
+                            $('#books-list').append(bookslist[i]);
+                        }
                         // Re-apply jQuery Mobile styles
                         $('#books-list').listview('refresh');
                     },

@@ -21,6 +21,7 @@
                 <a href="#page-new-book" id="btn-compose" data-icon="plus" data-iconpos="right" data-inline="true" data-role="button" data-rel="dialog" data-transition="fade" class="ui-btn-right">Add</a>
             </div>
             <div data-role="content">
+              <div id="scroller">
                 <ul id="books-list"  data-role="listview" data-inset="false" >
                     <li>
                         <h3>First Title</h3>
@@ -31,6 +32,7 @@
                         <p>Second author</p>
                     </li>
                 </ul>
+              </div>
             </div>
         </div>
 
@@ -54,10 +56,10 @@
     </body>
 
   <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript">
+      app.initialize();
+  </script>
         
   <script src="js/jquery-1.9.1.js"></script>
   <script src="js/jquery.mobile-1.3.1.js"></script>
@@ -65,4 +67,10 @@
 
   <script src="js/apigee/apigee.js"></script>
   <script src="js/books.js"></script>
+
+  <script type="text/javascript" src="iscroll.js"></script>
+  <script type="text/javascript">
+    var wrapper = document.getElementById('scroller');
+    var myScroll = new IScroll(wrapper);
+  </script>
 </html>
